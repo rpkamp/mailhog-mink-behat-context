@@ -71,7 +71,7 @@ final class MinkAwareMailhogContext implements MailhogAwareContext, MinkAwareCon
 
         foreach ($xPaths as $xPath) {
             $filtered = $crawler->filterXPath($xPath);
-            if ($filtered->count()) {
+            if ($filtered->getNode(0)) {
                 break;
             }
         }
