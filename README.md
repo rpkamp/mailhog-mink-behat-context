@@ -55,11 +55,11 @@ When I click the link "link-description" in the last received email
 
 This step will fetch the last received email from Mailhog and search for a link with "link-description" as (in order):
 
-- id attribute *(<a id="link-description"></a>)*
-- link text *(<a>link-description</a>)*
-- title attribute *(<a title="link-description"></a>)*
-- alt attribute *(<a alt="link-description"></a>)*
-- partial link text *(<a>some link-description</a>)*
+- id attribute *(&lt;a id="link-description"&gt;&lt;/a&gt;)*
+- link text *(&lt;a&gt;link-description&lt;/a>)*
+- title attribute *(&lt;a title="link-description"&gt;&lt;/a&gt;)*
+- alt attribute *(&lt;a alt="link-description"&gt;&lt;/a&gt;)*
+- partial link text *(&lt;a&gt;some link-description&lt;/a&gt;)*
 
 It will stop when it finds any of the above criteria fits and that tell Mink to follow that link, so from there on you can continue in Mink. This enables scenarios like password reset where you receive an email, click a link in that email and then do something in a browser.
 
