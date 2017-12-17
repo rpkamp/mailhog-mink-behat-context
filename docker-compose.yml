@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  mailhog:
+    image: mailhog/mailhog
+    command: -api-bind-addr 0.0.0.0:11025 -ui-bind-addr 0.0.0.0:11025 -smtp-bind-addr 0.0.0.0:4025
+    ports:
+      - '4025:4025'
+      - '11025:11025'
