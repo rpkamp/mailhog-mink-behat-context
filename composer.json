@@ -1,5 +1,5 @@
 {
-    "name": "rpkamp/mailhog-mink-behat-extension",
+    "name": "rpkamp/mailhog-mink-behat-context",
     "description": "Mailhog Extension for Behat",
     "type": "library",
     "license": "MIT",
