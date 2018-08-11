@@ -25,7 +25,7 @@
         "behat/behat": "^3.0.5",
         "behat/mink-extension": "^2.3",
         "rpkamp/mailhog-behat-extension": "^0.3.4",
-        "symfony/dom-crawler": "^3.0"
+        "symfony/dom-crawler": "^3.0 || ^4.0"
     },
     "require-dev": {
         "guzzlehttp/psr7": "^1.4",
