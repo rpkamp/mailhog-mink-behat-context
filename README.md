@@ -1,4 +1,4 @@
-# Mailhog Mink Behat Context [![Build Status](https://travis-ci.org/rpkamp/mailhog-mink-behat-context.svg?branch=master)](https://travis-ci.org/rpkamp/mailhog-mink-behat-context)
+# Mailhog Mink Behat Context [![CircleCI](https://circleci.com/gh/rpkamp/mailhog-mink-behat-context/tree/master.svg?style=svg)](https://circleci.com/gh/rpkamp/mailhog-mink-behat-context/tree/master)
 
 A simple PHP (7.1+) [Behat] context for [Mailhog][mailhog] with [Mink][mink] integration.
 
