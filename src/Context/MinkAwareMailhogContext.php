@@ -80,6 +80,16 @@ final class MinkAwareMailhogContext implements MailhogAwareContext, MinkAwareCon
             throw new RuntimeException(sprintf('No link found with id|title|alt|text "%s"', $link));
         }
 
-        $this->mink->getSession()->visit($filtered->eq(0)->attr('href'));
+        $url = $filtered->eq(0)->attr('href');
+        if (null === $url) {
+            throw new RuntimeException(
+                sprintf(
+                    'Link with id|title|alt|text "%s" found, but missing "href" attribute',
+                    $link
+                )
+            );
+        }
+
+        $this->mink->getSession()->visit($url);
     }
 }
