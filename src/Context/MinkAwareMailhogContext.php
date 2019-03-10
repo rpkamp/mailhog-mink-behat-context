@@ -28,17 +28,17 @@ final class MinkAwareMailhogContext implements MailhogAwareContext, MinkAwareCon
      */
     private $mailhogClient;
 
-    public function setMink(Mink $mink)
+    public function setMink(Mink $mink): void
     {
         $this->mink = $mink;
     }
 
-    public function setMinkParameters(array $parameters)
+    public function setMinkParameters(array $parameters): void
     {
         $this->minkParameters = $parameters;
     }
 
-    public function setMailhog(MailhogClient $client)
+    public function setMailhog(MailhogClient $client): void
     {
         $this->mailhogClient = $client;
     }
@@ -46,7 +46,7 @@ final class MinkAwareMailhogContext implements MailhogAwareContext, MinkAwareCon
     /**
      * @When /^I click the link "([^"]*)" in the last received email$/
      */
-    public function iClickTheLinkInTheLastReceivedEmail(string $link)
+    public function iClickTheLinkInTheLastReceivedEmail(string $link): void
     {
         if (!class_exists(Crawler::class)) {
             throw new Exception(

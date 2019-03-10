@@ -13,7 +13,7 @@ final class FeatureContext implements Context, MailhogAwareContext
      */
     private $mailHog;
 
-    public function setMailhog(MailhogClient $client)
+    public function setMailhog(MailhogClient $client): void
     {
         $this->mailHog = $client;
     }
@@ -21,7 +21,7 @@ final class FeatureContext implements Context, MailhogAwareContext
     /**
      * @Given /^I sent an email with a link$/
      */
-    public function iSentAnEmailWithALink()
+    public function iSentAnEmailWithALink(): void
     {
         $message = (new Swift_Message())
             ->setFrom('me@myself.example', 'Myself')
