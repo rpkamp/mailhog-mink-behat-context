@@ -8,7 +8,7 @@ default:
         - Behat\MinkExtension\Context\MinkContext
   extensions:
     rpkamp\Behat\MailhogExtension:
-      base_url: http://localhost:10025
+      base_url: http://localhost:11025
     Behat\MinkExtension:
       sessions:
         default:

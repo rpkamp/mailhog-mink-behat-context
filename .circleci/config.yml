@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: circleci/php:7.2-node-browsers
       - image: mailhog/mailhog:v1.0.0
-        command: "-api-bind-addr 0.0.0.0:10025 -ui-bind-addr 0.0.0.0:10025 -smtp-bind-addr 0.0.0.0:3025"
+        command: "-api-bind-addr 0.0.0.0:11025 -ui-bind-addr 0.0.0.0:11025 -smtp-bind-addr 0.0.0.0:4025"
     working_directory: ~/repo
     steps:
       - checkout
@@ -22,7 +22,7 @@ jobs:
     docker:
       - image: circleci/php:7.3-node-browsers
       - image: mailhog/mailhog:v1.0.0
-        command: "-api-bind-addr 0.0.0.0:10025 -ui-bind-addr 0.0.0.0:10025 -smtp-bind-addr 0.0.0.0:3025"
+        command: "-api-bind-addr 0.0.0.0:11025 -ui-bind-addr 0.0.0.0:11025 -smtp-bind-addr 0.0.0.0:4025"
     working_directory: ~/repo
     steps:
       - checkout
@@ -40,7 +40,7 @@ jobs:
     docker:
       - image: circleci/php:7.2-node-browsers
       - image: mailhog/mailhog:v1.0.0
-        command: "-api-bind-addr 0.0.0.0:10025 -ui-bind-addr 0.0.0.0:10025 -smtp-bind-addr 0.0.0.0:3025"
+        command: "-api-bind-addr 0.0.0.0:11025 -ui-bind-addr 0.0.0.0:11025 -smtp-bind-addr 0.0.0.0:4025"
     working_directory: ~/repo
     steps:
       - checkout
@@ -58,7 +58,7 @@ jobs:
     docker:
       - image: circleci/php:7.3-node-browsers
       - image: mailhog/mailhog:v1.0.0
-        command: "-api-bind-addr 0.0.0.0:10025 -ui-bind-addr 0.0.0.0:10025 -smtp-bind-addr 0.0.0.0:3025"
+        command: "-api-bind-addr 0.0.0.0:11025 -ui-bind-addr 0.0.0.0:11025 -smtp-bind-addr 0.0.0.0:4025"
     working_directory: ~/repo
     steps:
       - checkout

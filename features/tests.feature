@@ -1,8 +1,5 @@
 Feature: As the developer of this context I want it to function correctly
 
-  Background:
-    Given I am on "https://www.github.com/"
-
   @email
   Scenario: Find link by text and click it
     Given I sent an email with a link
