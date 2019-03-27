@@ -47,7 +47,9 @@ jobs:
       - restore_cache:
           keys:
             - v1-php7.2-lowest-dependencies-{{ checksum "composer.json" }}
-      - run: composer update --prefer-dist --prefer-lowest
+      - run:
+          command: composer update --prefer-dist --prefer-lowest
+          no_output_timeout: 20m
       - save_cache:
           paths:
             - ./vendor
@@ -65,7 +67,9 @@ jobs:
       - restore_cache:
           keys:
           - v1-php7.3-lowest-dependencies-{{ checksum "composer.json" }}
-      - run: composer update --prefer-dist --prefer-lowest
+      - run:
+          command: composer update --prefer-dist --prefer-lowest
+          no_output_timeout: 20m
       - save_cache:
           paths:
             - ./vendor
@@ -74,7 +78,20 @@ jobs:
 
 workflows:
   version: 2
-  all:
+  commit:
+    jobs:
+      - php7.2
+      - php7.3
+      - php7.2-lowest
+      - php7.3-lowest
+  weekly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * 0"
+          filters:
+            branches:
+              only:
+                - master
     jobs:
       - php7.2
       - php7.3
