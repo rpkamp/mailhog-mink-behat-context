@@ -32,7 +32,7 @@ final class FeatureContext implements Context, MailhogAwareContext
                 ')
             ->setSubject('Mailhog extension for Behat');
 
-        $mailer = new Swift_Mailer(new Swift_SmtpTransport('localhost', 3025));
+        $mailer = new Swift_Mailer(new Swift_SmtpTransport('localhost', 4025));
 
         $mailer->send($message);
     }
