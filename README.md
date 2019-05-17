@@ -1,18 +1,20 @@
 # Mailhog Mink Behat Context [![CircleCI](https://circleci.com/gh/rpkamp/mailhog-mink-behat-context/tree/master.svg?style=svg)](https://circleci.com/gh/rpkamp/mailhog-mink-behat-context/tree/master)
 
-A simple PHP (7.2+) [Behat] context for [Mailhog][mailhog] with [Mink][mink] integration.
+A PHP (7.2+) [Behat] context for [Mailhog][mailhog] with [Mink][mink] integration.
 
 Allows to simulate link clicks in emails and continue from the link's URL in Mink. Suitable in browser-email-browser flows such as forgotten password resets.
 
-This context is based on the MailhogAwareContext from [rpkamp/mailhog-behat-extension][mailhog-behat-extension].
+This context is based on the `MailhogAwareContext` from [rpkamp/mailhog-behat-extension][mailhog-behat-extension].
 
 ## Installation
 
-To install this context, run:
+This package does not require any specific HTTP client implementation, but it requires [rpkamp/mailhog-client][mailhog-client], which is based on [HTTPlug][httplug], so you can inject your own HTTP client of choice. So you when you install this extension make sure you either already have an HTTP client installed, or install one at the same time as installing this context, otherwise installation will fail.
 
 ```bash
-composer install --dev rpkamp/mailhog-mink-behat-context
+composer require rpkamp/mailhog-mink-behat-context <your-http-client-of-choice>
 ```
+
+For more information please refer to the [HTTPlug documentation for Library Users][httplug-docs].
 
 ## Usage
 
@@ -31,7 +33,7 @@ default:
       base_url: http://localhost:8025
 ```
 
-The `base_url` is the URL where the Mailhog Web UI is listening to (by default this is `http://localhost:8025).
+The `base_url` is the URL where the Mailhog Web UI is listening to (by default this is `http://localhost:8025`).
 
 And also include the `\rpkamp\Behat\MailhogExtension\Context\MinkAwareMailogContext` in your contexts for behat:
 
@@ -43,7 +45,7 @@ default:
 
 ```
 
-Not that this context does _not_ extend `rpkamp\Behat\MailhogExtension\Context\MailhogContext` from `rpkamp/mailhog-behat-extension`, so if you need functionality from both contexts you need to include both contexts in your behat configuration.
+Note that this context does _not_ extend `rpkamp\Behat\MailhogExtension\Context\MailhogContext` from [rpkamp/mailhog-behat-extension][mailhog-behat-extension], so if you need functionality from both contexts you need to include both contexts in your behat configuration.
 
 ## Gherkin step
 
