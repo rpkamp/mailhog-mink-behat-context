@@ -13,7 +13,7 @@ lint:
 code-style: phpmd phpcs
 
 # Check code for design problems
-phpmd: phpmd.phar
+phpmd:
 	php phpmd.phar src/ xml phpmd.xml --suffixes php
 
 # Check code adheres to PSR-2
@@ -27,8 +27,5 @@ behat:
 # Run phpstan
 phpstan:
 	vendor/bin/phpstan analyze src/ --level max
-
-phpmd.phar:
-	wget -c http://static.phpmd.org/php/latest/phpmd.phar > /dev/null
 
 .PHONY: help test lint code-style phpmd phpcs behat phpstan
