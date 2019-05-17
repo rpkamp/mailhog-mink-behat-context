@@ -44,16 +44,9 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v1-php7.2-lowest-dependencies-{{ checksum "composer.json" }}
       - run:
           command: composer update --prefer-dist --prefer-lowest
           no_output_timeout: 20m
-      - save_cache:
-          paths:
-            - ./vendor
-          key: v1-php7.2-lowest-dependencies-{{ checksum "composer.json" }}
       - run: make test
 
   php7.3-lowest:
@@ -64,16 +57,9 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      - restore_cache:
-          keys:
-          - v1-php7.3-lowest-dependencies-{{ checksum "composer.json" }}
       - run:
           command: composer update --prefer-dist --prefer-lowest
           no_output_timeout: 20m
-      - save_cache:
-          paths:
-            - ./vendor
-          key: v1-php7.3-lowest-dependencies-{{ checksum "composer.json" }}
       - run: make test
 
 workflows:
