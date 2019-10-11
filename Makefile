@@ -18,7 +18,7 @@ phpmd:
 
 # Check code adheres to PSR-2
 phpcs:
-	vendor/bin/phpcs --standard=PSR2 src/
+	vendor/bin/phpcs
 
 # Run behat
 behat:
