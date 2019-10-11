@@ -10,6 +10,8 @@ use rpkamp\Behat\MailhogExtension\Context\MailhogAwareContext;
 use rpkamp\Mailhog\MailhogClient;
 use RuntimeException;
 use Symfony\Component\DomCrawler\Crawler;
+use function class_exists;
+use function sprintf;
 
 final class MinkAwareMailhogContext implements MailhogAwareContext, MinkAwareContext
 {
@@ -17,11 +19,6 @@ final class MinkAwareMailhogContext implements MailhogAwareContext, MinkAwareCon
      * @var Mink
      */
     private $mink;
-
-    /**
-     * @var array
-     */
-    private $minkParameters;
 
     /**
      * @var MailhogClient
@@ -33,9 +30,11 @@ final class MinkAwareMailhogContext implements MailhogAwareContext, MinkAwareCon
         $this->mink = $mink;
     }
 
+    /**
+     * @param mixed[] $parameters
+     */
     public function setMinkParameters(array $parameters): void
     {
-        $this->minkParameters = $parameters;
     }
 
     public function setMailhog(MailhogClient $client): void
@@ -52,7 +51,7 @@ final class MinkAwareMailhogContext implements MailhogAwareContext, MinkAwareCon
             throw new Exception(
                 sprintf(
                     'In order for Mink integration to work in %s you need to install symfony/dom-crawler',
-                    __CLASS__
+                    self::class
                 )
             );
         }
