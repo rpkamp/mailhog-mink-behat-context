@@ -2,7 +2,7 @@
 
 A PHP (7.2+) [Behat] context for [Mailhog][mailhog] with [Mink][mink] integration.
 
-Allows to simulate link clicks in emails and continue from the link's URL in Mink. Suitable in browser-email-browser flows such as forgotten password resets.
+Allows to simulate link clicks in emails and continue from the links URL in Mink. Suitable in browser-email-browser flows such as forgotten password resets.
 
 This context is based on the `MailhogAwareContext` from [rpkamp/mailhog-behat-extension][mailhog-behat-extension].
 
@@ -47,15 +47,16 @@ default:
 
 Note that this context does _not_ extend `rpkamp\Behat\MailhogExtension\Context\MailhogContext` from [rpkamp/mailhog-behat-extension][mailhog-behat-extension], so if you need functionality from both contexts you need to include both contexts in your behat configuration.
 
-## Gherkin step
+## Gherkin steps
 
-This context contains the following gherkin step
+This context contains the following gherkin steps:
 
 ```gherkin
-When I click the link "link-description" in the last received email 
+When I click the link "link-description" in the last received email
+When I click the link "link-description" in the opened email 
 ```
 
-This step will fetch the last received email from Mailhog and search for a link with "link-description" as (in order):
+This first step will fetch the last received email from Mailhog and search for a link with "link-description" as (in order):
 
 - id attribute *(&lt;a id="link-description"&gt;&lt;/a&gt;)*
 - link text *(&lt;a&gt;link-description&lt;/a>)*
@@ -64,6 +65,8 @@ This step will fetch the last received email from Mailhog and search for a link 
 - partial link text *(&lt;a&gt;some link-description&lt;/a&gt;)*
 
 It will stop when it finds any of the above criteria fits and that tell Mink to follow that link, so from there on you can continue in Mink. This enables scenarios like password reset where you receive an email, click a link in that email and then do something in a browser.
+
+The second step fetches the email that was opened using [rpkamp/mailhog-behat-extension](mailhog-behat-extension) and open the link with "link-description" in that, using the same procedure as outline above.
 
 ## Run tests
 

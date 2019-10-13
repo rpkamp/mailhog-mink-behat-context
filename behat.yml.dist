@@ -5,6 +5,7 @@ default:
       contexts:
         - FeatureContext
         - rpkamp\Behat\Context\MinkAwareMailhogContext
+        - rpkamp\Behat\MailhogExtension\Context\MailhogContext
         - Behat\MinkExtension\Context\MinkContext
   extensions:
     rpkamp\Behat\MailhogExtension:
