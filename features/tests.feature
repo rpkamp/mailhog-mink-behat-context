@@ -1,31 +1,30 @@
 Feature: As the developer of this context I want it to function correctly
 
   @email
-  Scenario: Find link by text and click it
+  Scenario Outline: Find link in latest email and click it
     Given I sent an email with a link
-    When I click the link "github" in the last received email
+    When I click the link "<link>" in the last received email
     Then I should be on "https://github.com/rpkamp/mailhog-behat-context"
 
-  @email
-  Scenario: Find link by id and click it
-    Given I sent an email with a link
-    When I click the link "gh-id" in the last received email
-    Then I should be on "https://github.com/rpkamp/mailhog-behat-context"
+  Examples:
+    | link     | description           |
+    | github   | Link contents         |
+    | gh-id    | Link ID attribute     |
+    | gh-title | Link title attribute  |
+    | gh-alt   | Link alt attribute    |
+    | git      | Partial link contents |
 
   @email
-  Scenario: Find link by title and click it
+  Scenario Outline: Open sent email and click the link in it
     Given I sent an email with a link
-    When I click the link "gh-title" in the last received email
+    When I open the latest email from "me@myself.example"
+    And I click the link "<link>" in the opened email
     Then I should be on "https://github.com/rpkamp/mailhog-behat-context"
 
-  @email
-  Scenario: Find link by alt and click it
-    Given I sent an email with a link
-    When I click the link "gh-alt" in the last received email
-    Then I should be on "https://github.com/rpkamp/mailhog-behat-context"
-
-  @email
-  Scenario: Find link by alt and click it
-    Given I sent an email with a link
-    When I click the link "git" in the last received email
-    Then I should be on "https://github.com/rpkamp/mailhog-behat-context"
+  Examples:
+    | link     | description           |
+    | github   | Link contents         |
+    | gh-id    | Link ID attribute     |
+    | gh-title | Link title attribute  |
+    | gh-alt   | Link alt attribute    |
+    | git      | Partial link contents |

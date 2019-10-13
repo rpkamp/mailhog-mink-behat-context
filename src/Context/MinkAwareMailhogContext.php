@@ -7,13 +7,16 @@ use Behat\Mink\Mink;
 use Behat\MinkExtension\Context\MinkAwareContext;
 use Exception;
 use rpkamp\Behat\MailhogExtension\Context\MailhogAwareContext;
+use rpkamp\Behat\MailhogExtension\Context\OpenedEmailStorageAwareContext;
+use rpkamp\Behat\MailhogExtension\Service\OpenedEmailStorage;
 use rpkamp\Mailhog\MailhogClient;
+use rpkamp\Mailhog\Message\Message;
 use RuntimeException;
 use Symfony\Component\DomCrawler\Crawler;
 use function class_exists;
 use function sprintf;
 
-final class MinkAwareMailhogContext implements MailhogAwareContext, MinkAwareContext
+final class MinkAwareMailhogContext implements MailhogAwareContext, MinkAwareContext, OpenedEmailStorageAwareContext
 {
     /**
      * @var Mink
@@ -24,6 +27,11 @@ final class MinkAwareMailhogContext implements MailhogAwareContext, MinkAwareCon
      * @var MailhogClient
      */
     private $mailhogClient;
+
+    /**
+     * @var OpenedEmailStorage
+     */
+    private $openedEmailStorage;
 
     public function setMink(Mink $mink): void
     {
@@ -42,10 +50,32 @@ final class MinkAwareMailhogContext implements MailhogAwareContext, MinkAwareCon
         $this->mailhogClient = $client;
     }
 
+    public function setOpenedEmailStorage(OpenedEmailStorage $storage): void
+    {
+        $this->openedEmailStorage = $storage;
+    }
+
     /**
      * @When /^I click the link "([^"]*)" in the last received email$/
      */
     public function iClickTheLinkInTheLastReceivedEmail(string $link): void
+    {
+        $this->clickLink($this->mailhogClient->getLastMessage(), $link);
+    }
+
+    /**
+     * @When /^I click the link "([^"]*)" in the opened email$/
+     */
+    public function iClickTheLinkInTheOpenedEmail(string $link): void
+    {
+        if (!$this->openedEmailStorage->hasOpenedEmail()) {
+            throw new RuntimeException('Unable to click link in opened email - no email has been opened yet');
+        }
+
+        $this->clickLink($this->openedEmailStorage->getOpenedEmail(), $link);
+    }
+
+    private function clickLink(Message $message, string $link): void
     {
         if (!class_exists(Crawler::class)) {
             throw new Exception(
@@ -55,8 +85,6 @@ final class MinkAwareMailhogContext implements MailhogAwareContext, MinkAwareCon
                 )
             );
         }
-
-        $message = $this->mailhogClient->getLastMessage();
 
         $crawler = new Crawler($message->body);
 
