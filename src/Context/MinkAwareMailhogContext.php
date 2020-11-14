@@ -13,6 +13,7 @@ use rpkamp\Mailhog\MailhogClient;
 use rpkamp\Mailhog\Message\Message;
 use RuntimeException;
 use Symfony\Component\DomCrawler\Crawler;
+
 use function class_exists;
 use function sprintf;
 
