@@ -14,7 +14,7 @@ code-style: phpmd phpcs
 
 # Check code for design problems
 phpmd:
-	php phpmd.phar src/ xml phpmd.xml --suffixes php
+	vendor/bin/phpmd src/ xml phpmd.xml --suffixes php
 
 # Check code adheres to PSR-2
 phpcs:
