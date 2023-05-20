@@ -1,6 +1,6 @@
 # Mailhog Mink Behat Context ![Packagist Version](https://img.shields.io/packagist/v/rpkamp/mailhog-mink-behat-context)
 
-A PHP (7.2+) [Behat] context for [Mailhog][mailhog] with [Mink][mink] integration.
+A PHP (7.4+) [Behat] context for [Mailhog][mailhog] with [Mink][mink] integration.
 
 Allows to simulate link clicks in emails and continue from the links URL in Mink. Suitable in browser-email-browser flows such as forgotten password resets.
 
