@@ -19,20 +19,9 @@ use function sprintf;
 
 final class MinkAwareMailhogContext implements MailhogAwareContext, MinkAwareContext, OpenedEmailStorageAwareContext
 {
-    /**
-     * @var Mink
-     */
-    private $mink;
-
-    /**
-     * @var MailhogClient
-     */
-    private $mailhogClient;
-
-    /**
-     * @var OpenedEmailStorage
-     */
-    private $openedEmailStorage;
+    private Mink $mink;
+    private MailhogClient $mailhogClient;
+    private OpenedEmailStorage $openedEmailStorage;
 
     public function setMink(Mink $mink): void
     {
