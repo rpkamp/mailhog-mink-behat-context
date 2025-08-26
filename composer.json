@@ -22,9 +22,9 @@
     "minimum-stability": "stable",
     "require": {
         "php": "^7.4 || ^8.0",
-        "behat/mink-extension": "^2.3",
+        "friends-of-behat/mink-extension": "^2.3",
         "rpkamp/mailhog-behat-extension": "^1.0.0",
-        "symfony/dom-crawler": "^4.4 || ^5.0 || ^6.0"
+        "symfony/dom-crawler": "^4.4 || ^5.0 || ^6.0 || ^7.0"
     },
     "require-dev": {
         "php-http/curl-client": "^2.0",
