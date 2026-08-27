@@ -5,6 +5,10 @@ declare(strict_types=1);
 use Behat\Behat\Context\Context;
 use rpkamp\Behat\MailhogExtension\Context\MailhogAwareContext;
 use rpkamp\Mailhog\MailhogClient;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\Transport\Smtp\EsmtpTransport;
+use Symfony\Component\Mime\Address;
+use Symfony\Component\Mime\Email;
 
 final class FeatureContext implements Context, MailhogAwareContext
 {
@@ -23,17 +27,18 @@ final class FeatureContext implements Context, MailhogAwareContext
      */
     public function iSentAnEmailWithALink(): void
     {
-        $message = (new Swift_Message())
-            ->setFrom('me@myself.example', 'Myself')
-            ->setTo('me@myself.example')
-            ->setBody(
+        $email = (new Email())
+            ->from(new Address('me@myself.example', 'Myself'))
+            ->to('me@myself.example')
+            ->subject('Mailhog extension for Behat')
+            ->text(
                 'Check out this Behat extension for MailHog on
                  <a href="https://github.com/rpkamp/mailhog-behat-context" id="gh-id" title="gh-title" alt="gh-alt">github</a>.
-                ')
-            ->setSubject('Mailhog extension for Behat');
+                '
+            );
 
-        $mailer = new Swift_Mailer(new Swift_SmtpTransport('localhost', 4025));
+        $mailer = new Mailer(new EsmtpTransport('localhost', 4025));
 
-        $mailer->send($message);
+        $mailer->send($email);
     }
 }
